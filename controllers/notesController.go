@@ -79,3 +79,13 @@ func NotesUpdate(c *gin.Context) {
 	note.Update(name, content)
 	c.Redirect(http.StatusMovedPermanently, "/notes/"+idStr)
 }
+
+func NotesDelete(c *gin.Context) {
+	idStr := c.Param("id")
+	id, err := strconv.ParseUint(idStr, 10, 64)
+	if err != nil {
+		fmt.Printf("Error:%v", err)
+	}
+	models.NotesMarkDelete(id)
+	c.Redirect(http.StatusSeeOther, "/notes")
+}

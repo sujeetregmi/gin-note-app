@@ -38,3 +38,8 @@ func (note *Note) Update(name string, content string) {
 	note.Content = content
 	DB.Save(note)
 }
+
+func NotesMarkDelete(id uint64) {
+	// UPDATE notes SET deleted_at =<Current Time> WHERE id =<id>
+	DB.Where("id=?", id).Delete(&Note{})
+}
