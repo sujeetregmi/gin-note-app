@@ -1,7 +1,9 @@
 package controllers
 
 import (
+	"fmt"
 	"net/http"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 	"github.com/sujeetregmi/gin-note-app/models"
@@ -30,5 +32,21 @@ func NotesCreate(c *gin.Context) {
 	name := c.PostForm("name")
 	content := c.PostForm("content")
 	models.NoteCreate(name, content)
-	c.Redirect(http.StatusMovedPermanently, "")
+	c.Redirect(http.StatusMovedPermanently, "/notes")
+}
+
+func NotesShow(c *gin.Context) {
+	idStr := c.Param("id")
+	id, err := strconv.ParseUint(idStr, 10, 64)
+	if err != nil {
+		fmt.Printf("Error:%v", err)
+	}
+	note := models.NotesFind(id)
+	c.HTML(
+		http.StatusOK,
+		"notes/show.html",
+		gin.H{
+			"note": note,
+		},
+	)
 }

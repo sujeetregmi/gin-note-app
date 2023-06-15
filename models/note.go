@@ -22,7 +22,13 @@ func NotesAll() *[]Note {
 }
 
 func NoteCreate(name string, content string) *Note {
-	entry :=Note{Name:name,Content:content}
+	entry := Note{Name: name, Content: content}
 	DB.Create(&entry)
 	return &entry
+}
+
+func NotesFind(id uint64) *Note {
+	var note Note
+	DB.Where("id =?", id).First(&note)
+	return &note
 }
