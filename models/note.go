@@ -32,3 +32,9 @@ func NotesFind(id uint64) *Note {
 	DB.Where("id =?", id).First(&note)
 	return &note
 }
+
+func (note *Note) Update(name string, content string) {
+	note.Name = name
+	note.Content = content
+	DB.Save(note)
+}

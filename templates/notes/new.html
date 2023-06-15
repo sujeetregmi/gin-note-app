@@ -1,16 +1,16 @@
 {{define "notes/new.html"}}
     {{template "layouts/header.html"}}
-    <form action="/notes" method="POST" class="row g-3">
-        <div class="mb-3">
-          <label for="name" class="form-label">Title</label>
-          <input type="text" class="form-control" id="name" aria-describedby="nameHelp" name="name" required>
-          <div id="nameHelp" class="form-text">Title of note</div>
-        </div>
-        <div class="mb-3">
-          <label for="content" class="form-label">Content</label>
-          <textarea name="content" id="content" rows="16" class="form-control" required></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
+        <form action="/notes" method="POST" class="row g-3">
+            <div class="mb-3">
+                <label for="name" class="form-label">Title</label>
+                <input type="text" class="form-control" id="name" aria-describedby="nameHelp" name="name" required>
+                <div id="nameHelp" class="form-text">Title of note</div>
+            </div>
+            <div class="mb-3">
+                <label for="content" class="form-label">Content</label>
+                <textarea name="content" id="content" rows="16" class="form-control" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
     {{template "layouts/footer.html"}}
 {{end}}

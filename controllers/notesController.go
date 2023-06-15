@@ -50,3 +50,32 @@ func NotesShow(c *gin.Context) {
 		},
 	)
 }
+
+func NotesEditPage(c *gin.Context) {
+	idStr := c.Param("id")
+	id, err := strconv.ParseUint(idStr, 10, 64)
+	if err != nil {
+		fmt.Printf("Error:%v", err)
+	}
+	note := models.NotesFind(id)
+	c.HTML(
+		http.StatusOK,
+		"notes/edit.html",
+		gin.H{
+			"note": note,
+		},
+	)
+}
+
+func NotesUpdate(c *gin.Context) {
+	idStr := c.Param("id")
+	id, err := strconv.ParseUint(idStr, 10, 64)
+	if err != nil {
+		fmt.Printf("Error:%v", err)
+	}
+	note := models.NotesFind(id)
+	name := c.PostForm("name")
+	content := c.PostForm("content")
+	note.Update(name, content)
+	c.Redirect(http.StatusMovedPermanently, "/notes/"+idStr)
+}
