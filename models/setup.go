@@ -18,4 +18,5 @@ func ConnectDatabase() {
 
 func DbMigrate() {
 	DB.AutoMigrate(&Note{})
+	DB.AutoMigrate(&User{})
 }

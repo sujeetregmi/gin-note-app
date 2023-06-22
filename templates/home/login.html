@@ -1,0 +1,17 @@
+{{define "home/login.html"}}
+    {{template "layouts/header.html"}}
+    <h1>Log In</h1>
+    <form action="/login" method="POST" class="row g-3">
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email" required>
+            <div id="emailHelp" class="form-text">For privacy concerns your email will be kept secret.</div>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" name="password" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    {{template "layouts/footer.html"}}
+{{end}}
