@@ -15,3 +15,7 @@ func GetUserFromRequest(c *gin.Context) *models.User {
 	}
 	return currentUser
 }
+
+func IsUserLoggedIn(c *gin.Context) bool {
+	return (c.GetUint64("user_id") > 0)
+}

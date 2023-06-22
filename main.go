@@ -8,6 +8,7 @@ import (
 	"github.com/gin-contrib/sessions/memstore"
 	"github.com/gin-gonic/gin"
 	"github.com/sujeetregmi/gin-note-app/controllers"
+	controllers_helper "github.com/sujeetregmi/gin-note-app/controllers/helpers"
 	"github.com/sujeetregmi/gin-note-app/middlewares"
 	"github.com/sujeetregmi/gin-note-app/models"
 )
@@ -45,7 +46,7 @@ func main() {
 	r.GET("/", func(c *gin.Context) {
 		c.HTML(http.StatusOK, "home/index.html", gin.H{
 			"title":     "Notes Application",
-			"logged_in": c.GetUint64("user_id") > 0,
+			"logged_in": controllers_helper.IsUserLoggedIn(c),
 		})
 	})
 	fmt.Println("Server Started")
