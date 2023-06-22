@@ -28,13 +28,17 @@ func main() {
 	r.Use(sessions.Sessions("notes", store))
 	r.Use(middlewares.AuthenticateUser())
 
-	r.GET("/notes", controllers.NotesIndex)
-	r.GET("/notes/new", controllers.NotesNew)
-	r.POST("/notes", controllers.NotesCreate)
-	r.GET("/notes/:id", controllers.NotesShow)
-	r.GET("/notes/edit/:id", controllers.NotesEditPage)
-	r.POST("/notes/:id", controllers.NotesUpdate)
-	r.DELETE("/notes/:id", controllers.NotesDelete)
+	//grouping routes ->/notes
+	notes := r.Group("/notes")
+	{
+		notes.GET("/", controllers.NotesIndex)
+		notes.GET("/new", controllers.NotesNew)
+		notes.POST("/", controllers.NotesCreate)
+		notes.GET("/:id", controllers.NotesShow)
+		notes.GET("/edit/:id", controllers.NotesEditPage)
+		notes.POST("/:id", controllers.NotesUpdate)
+		notes.DELETE("/:id", controllers.NotesDelete)
+	}
 
 	r.GET("/login", controllers.LoginPage)
 	r.GET("/signup", controllers.SignupPage)
