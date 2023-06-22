@@ -11,6 +11,42 @@
 </head>
 
 <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+       <div class="container-fluid">
+        <a class="navbar-brand" href="#">Notes Application</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/notes">Notes</a>
+            </li>
+          </ul>
+        </div>
+       </div>
+       <div class="userinfo" id="navbarUserInfo">
+        <ul class="navbar-nav">
+            {{if .email}}
+                <li class="nav-item disabled">
+                    <a class="nav-link">{{.email}}</a>
+                </li>
+                <li class="nav-item">
+                    <form action="/logout" method="POST">
+                        <button type="submit nav-item" class="btn btn-outline-danger">Logout</button>
+                    </form>
+                </li>
+            {{else}}
+                <li class="nav-item">
+                    <a href="/signup" class="nav-link"><button class="btn btn-primary btn-block">Signup</button></a>
+                </li>
+                <li class="nav-item">
+                    <a href="/login" class="nav-link"><button class="btn btn-primary btn-block">Login</button></a>
+                </li>
+            {{end}}
+        </ul>
+       </div>
+    </nav>
     {{if .alert}}
         <div class="alert alert-primary" role="alert">{{.alert}}</div>
     {{end}}

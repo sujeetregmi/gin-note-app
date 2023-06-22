@@ -28,6 +28,7 @@ func NotesIndex(c *gin.Context) {
 		"notes/index.html",
 		gin.H{
 			"notes": notes,
+			"email":currentUser.Username,
 		},
 	)
 }
