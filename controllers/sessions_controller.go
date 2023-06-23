@@ -77,9 +77,6 @@ func Login(c *gin.Context) {
 	email := c.PostForm("email")
 	password := c.PostForm("password")
 	user := models.UserCheck(email, password)
-	data := gin.H{
-		"alert": "Email or Password mis matched.!",
-	}
 	if user != nil {
 		//set sesion
 		helpers.SessionSet(c, user.ID)
@@ -91,7 +88,9 @@ func Login(c *gin.Context) {
 		c.HTML(
 			http.StatusOK,
 			"home/login.html",
-			data,
+			gin.H{
+				"alert": "Email or Password mis matched.!",
+			},
 		)
 	}
 }

@@ -18,6 +18,7 @@ func NotesIndex(c *gin.Context) {
 			"notes/index.html",
 			gin.H{
 				"alert": "Unautorized Access!",
+				"email": "",
 			},
 		)
 		return
@@ -28,7 +29,8 @@ func NotesIndex(c *gin.Context) {
 		"notes/index.html",
 		gin.H{
 			"notes": notes,
-			"email":currentUser.Username,
+			"email": currentUser.Username,
+			"alert": "",
 		},
 	)
 }
